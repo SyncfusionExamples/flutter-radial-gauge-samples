@@ -61,11 +61,12 @@ class _MyHomePageState extends State<MyHomePage> {
                    RadialAxis(
                        startAngle: 180,
                        endAngle: 360,
-                       interval: 10, canScaleToFit: true,
-                       labelFormat: '{value}%',
+                       interval: 1000, canScaleToFit: true,
+                       labelFormat: 'A{value}',
                        labelsPosition: ElementsPosition.outside,
                        ticksPosition: ElementsPosition.inside,
-                       labelOffset: 15,
+                       labelOffset: 15, minimum: 1000,
+                       maximum: 10000,
                        minorTickStyle: MinorTickStyle(
                            length: 0.05, lengthUnit: GaugeSizeUnit.factor, thickness: 1.5),
                        majorTickStyle: MajorTickStyle(
@@ -73,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
                        minorTicksPerInterval: 5,
                        pointers: <GaugePointer>[
                          NeedlePointer(
-                             value: 70,
+                             value: 7000,
                              needleStartWidth: 1,
                              needleEndWidth: 3,
                              needleLength: 0.8,
@@ -99,9 +100,10 @@ class _MyHomePageState extends State<MyHomePage> {
            axes: <RadialAxis>[
            RadialAxis(
                startAngle: 180,
-               endAngle: 360,
-               interval: 10, canScaleToFit: true,
-               numberFormat: NumberFormat.scientificPattern(),
+               endAngle: 360, minimum: 1000,
+               maximum: 10000,
+               interval: 1000, canScaleToFit: true,
+               numberFormat: NumberFormat.compact(),
                labelsPosition: ElementsPosition.outside,
                ticksPosition: ElementsPosition.inside,
                labelOffset: 15,
@@ -112,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
                minorTicksPerInterval: 5,
                pointers: <GaugePointer>[
                  NeedlePointer(
-                     value: 70,
+                     value: 7000,
                      needleStartWidth: 1,
                      needleEndWidth: 3,
                      needleLength: 0.8,
