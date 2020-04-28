@@ -45,41 +45,86 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
-   return Scaffold(
-     backgroundColor: Colors.white,
-     body: Center(
-       child: Column(
-         children: <Widget>[
-           Expanded(
-             child: SfRadialGauge(
-               axes: <RadialAxis>[
-                 RadialAxis(interval: 10,
-                     axisLineStyle: AxisLineStyle(gradient: SweepGradient(
-                         colors: <Color>[Color(0xFF159957), Color(0xFF155799)],
-                         stops: <double>[0.25, 0.75])))
-               ],
-             ),
-           ),
-           Expanded(
-             child: SfRadialGauge(
-               axes: <RadialAxis>[
-                 RadialAxis( interval: 10, axisLineStyle: AxisLineStyle(thickness: 15),
-                     minorTicksPerInterval: 0,
-                     pointers: <GaugePointer>[RangePointer(value: 60,
-                         gradient: SweepGradient(colors: <Color>[Color(0xFF30E8BF), Color(0xFFFF8235)],
-                             stops: <double>[0.25, 0.75]),
-                         width: 15,
-                         cornerStyle: CornerStyle.bothCurve)]
-                 )
-               ],
-             ),
-           )
-         ],
-       ),
-     ),
-   );
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: SfRadialGauge(
+                axes: <RadialAxis>[
+                  RadialAxis(
+                      interval: 10,
+                      axisLineStyle: AxisLineStyle(
+                          gradient: SweepGradient(colors: <Color>[
+                        Color(0xFFE7627D),
+                        Color(0xFF231557),
+                        Color(0xFF44107A),
+                        Color(0xFFFF1361),
+                        Color(0xFFFFF800),
+                      ], stops: <double>[
+                        0,
+                        0.25,
+                        0.5,
+                        0.75,
+                        1
+                      ])))
+                ],
+              ),
+            ),
+            Expanded(
+              child: SfRadialGauge(
+                axes: <RadialAxis>[
+                  RadialAxis(
+                      interval: 10,
+                      axisLineStyle: AxisLineStyle(thickness: 15),
+                      minorTicksPerInterval: 0,
+                      pointers: <GaugePointer>[
+                        RangePointer(
+                            value: 65,
+                            gradient: SweepGradient(colors: <Color>[
+                              Color(0xFFFF8177),
+                              Color(0xFFFF867A),
+                              Color(0xFFFF8C7F),
+                              Color(0xFFCF556C),
+                              Color(0xFFB12A5B),
+                            ], stops: <double>[
+                              0,
+                              0.25,
+                              0.5,
+                              0.75,
+                              1
+                            ]),
+                            width: 15,
+                            cornerStyle: CornerStyle.bothCurve),
+                        NeedlePointer(
+                          value: 65,
+                          knobStyle: KnobStyle(knobRadius: 0),
+                          needleStartWidth: 5,
+                          needleEndWidth: 7,
+                          lengthUnit: GaugeSizeUnit.factor,
+                          needleLength: 0.8,
+                          gradient: LinearGradient(
+                              colors: <Color>[
+                                Color(0xFFFF8177),
+                                Color(0xFFFF867A),
+                                Color(0xFFFF8C7F),
+                                Color(0xFFCF556C),
+                                Color(0xFFB12A5B),
+                              ],
+                              begin: Alignment.bottomCenter,
+                              end: Alignment.topCenter,
+                              stops: <double>[0, 0.25, 0.5, 0.75, 1]),
+                        )
+                      ])
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
