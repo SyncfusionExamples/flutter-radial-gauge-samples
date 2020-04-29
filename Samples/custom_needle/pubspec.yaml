@@ -1,4 +1,4 @@
-name: gradient_scale
+name: custom_needle
 description: A new Flutter application.
 
 # The following defines the version and build number for your application.
@@ -23,7 +23,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
-  syncfusion_flutter_gauges: ^18.1.45
+  syncfusion_flutter_gauges: ^18.1.42
 
 dev_dependencies:
   flutter_test:
