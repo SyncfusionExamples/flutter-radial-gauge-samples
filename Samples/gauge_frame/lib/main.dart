@@ -45,73 +45,92 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-
-
   @override
-  Widget build(BuildContextcontext){
+  Widget build(BuildContextcontext) {
     return Scaffold(
-      body:Center(
-          child:
-          Container(
-              decoration:BoxDecoration(
-                  gradient:LinearGradient(
-                      colors:const<Color>[Color(0xFF484848),Color(0xFF030303)],
-                      begin:Alignment.topCenter,
-                      end:Alignment.bottomCenter)),
-              child:SfRadialGauge(
-                axes:<RadialAxis>[
-
-                  RadialAxis(showAxisLine:false,radiusFactor:1,showLastLabel:false,
-                      needsRotateLabels:true,tickOffset:0.32,
-                      offsetUnit:GaugeSizeUnit.factor,
-                      onLabelCreated:axisLabelCreated,startAngle:270,endAngle:270,
-                      labelOffset:0.05,
-                      maximum:360,minimum:0,interval:30,minorTicksPerInterval:4,
-                      axisLabelStyle:GaugeTextStyle(color:const Color(0xFF949494),
-                          fontSize:10),
-                      minorTickStyle:MinorTickStyle(color:const Color(0xFF616161),
-                          thickness:1.6,length:0.058,lengthUnit:GaugeSizeUnit.factor),
-                      majorTickStyle:MajorTickStyle(color:const Color(0xFF949494),
-                          thickness:2.3,length:0.087,lengthUnit:GaugeSizeUnit.factor),
-                      backgroundImage:const AssetImage('images/dark_theme_gauge.png'),
-                      pointers:<GaugePointer>[MarkerPointer(value:90,color:const Color(0xFFDF5F2D),
-                          enableAnimation:true,animationDuration:1200,
-                          markerOffset:0.71,offsetUnit:GaugeSizeUnit.factor,
-                          markerType:MarkerType.triangle,markerHeight:10,
-                          markerWidth:15)],
-                      annotations:<GaugeAnnotation>[GaugeAnnotation(angle:270,
-                          positionFactor:0.025,
-                          widget:Text('90',
-                            style:TextStyle(color:const Color(0xFFDF5F2D),
-                                fontWeight:FontWeight.bold,fontSize:22),))]
-                  )
-
+      body: Center(
+          child: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: const <Color>[
+                Color(0xFF484848),
+                Color(0xFF030303)
+              ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+              child: SfRadialGauge(
+                axes: <RadialAxis>[
+                  RadialAxis(
+                      showAxisLine: false,
+                      radiusFactor: 1,
+                      showLastLabel: false,
+                      canRotateLabels: true,
+                      tickOffset: 0.32,
+                      offsetUnit: GaugeSizeUnit.factor,
+                      onLabelCreated: axisLabelCreated,
+                      startAngle: 270,
+                      endAngle: 270,
+                      labelOffset: 0.05,
+                      maximum: 360,
+                      minimum: 0,
+                      interval: 30,
+                      minorTicksPerInterval: 4,
+                      axisLabelStyle: GaugeTextStyle(
+                          color: const Color(0xFF949494), fontSize: 10),
+                      minorTickStyle: MinorTickStyle(
+                          color: const Color(0xFF616161),
+                          thickness: 1.6,
+                          length: 0.058,
+                          lengthUnit: GaugeSizeUnit.factor),
+                      majorTickStyle: MajorTickStyle(
+                          color: const Color(0xFF949494),
+                          thickness: 2.3,
+                          length: 0.087,
+                          lengthUnit: GaugeSizeUnit.factor),
+                      backgroundImage:
+                          const AssetImage('images/dark_theme_gauge.png'),
+                      pointers: <GaugePointer>[
+                        MarkerPointer(
+                            value: 90,
+                            color: const Color(0xFFDF5F2D),
+                            enableAnimation: true,
+                            animationDuration: 1200,
+                            markerOffset: 0.71,
+                            offsetUnit: GaugeSizeUnit.factor,
+                            markerType: MarkerType.triangle,
+                            markerHeight: 10,
+                            markerWidth: 15)
+                      ],
+                      annotations: <GaugeAnnotation>[
+                        GaugeAnnotation(
+                            angle: 270,
+                            positionFactor: 0.025,
+                            widget: Text(
+                              '90',
+                              style: TextStyle(
+                                  color: const Color(0xFFDF5F2D),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 22),
+                            ))
+                      ])
                 ],
-              )
-          )),
-
+              ))),
     );
   }
-
 
   void axisLabelCreated(AxisLabelCreatedArgs args) {
     if (args.text == '90') {
       args.text = 'E';
-      args.labelStyle = GaugeTextStyle(color: const Color(0xFFDF5F2D),
-          fontSize: 10);
-    }else{
+      args.labelStyle =
+          GaugeTextStyle(color: const Color(0xFFDF5F2D), fontSize: 10);
+    } else {
       if (args.text == '0') {
         args.text = 'N';
-      }else if (args.text == '180') {
+      } else if (args.text == '180') {
         args.text = 'S';
       } else if (args.text == '270') {
         args.text = 'W';
       }
 
-      args.labelStyle = GaugeTextStyle(color: const Color(0xFFFFFFFF),
-          fontSize: 10
-      );
+      args.labelStyle =
+          GaugeTextStyle(color: const Color(0xFFFFFFFF), fontSize: 10);
     }
   }
 }
