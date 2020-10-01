@@ -45,15 +45,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child:  SfRadialGauge(
+        child: SfRadialGauge(
           axes: <RadialAxis>[
-            CustomAxis(
+            RadialAxis(
                 labelOffset: 15,
                 axisLineStyle: AxisLineStyle(
                     thicknessUnit: GaugeSizeUnit.factor, thickness: 0.15),
@@ -61,31 +60,41 @@ class _MyHomePageState extends State<MyHomePage> {
                 minimum: 0,
                 showTicks: false,
                 maximum: 150,
+                onCreateAxisRenderer: () {
+                  final _CustomAxisRenderer renderer = _CustomAxisRenderer();
+                  return renderer;
+                },
                 axisLabelStyle: GaugeTextStyle(fontSize: 12),
                 pointers: <GaugePointer>[
                   NeedlePointer(
                       gradient: LinearGradient(
-                          colors: const <Color>[Color.fromRGBO(203,126,223,0.1),
-                            Color(0xFFCB7EDF)],
-                          stops: const <double>[0.25, 0.75],
+                          colors: const <Color>[
+                            Color.fromRGBO(203, 126, 223, 0.1),
+                            Color(0xFFCB7EDF)
+                          ],
+                          stops: const <double>[
+                            0.25,
+                            0.75
+                          ],
                           begin: Alignment.bottomCenter,
                           end: Alignment.topCenter),
                       value: 60,
                       lengthUnit: GaugeSizeUnit.factor,
                       animationDuration: 1300,
-                      needleStartWidth:  4,
+                      needleStartWidth: 4,
                       needleEndWidth: 8,
                       needleLength: 0.8,
                       knobStyle: KnobStyle(
                         knobRadius: 0,
                       )),
                   RangePointer(
-                      value: 60,
-                      width: 0.15,
-                      sizeUnit: GaugeSizeUnit.factor,
-                      gradient: const SweepGradient(
-                          colors: <Color>[Color(0xFF9E40DC), Color(0xFFE63B86)],
-                          stops: <double>[0.25, 0.75]),)
+                    value: 60,
+                    width: 0.15,
+                    sizeUnit: GaugeSizeUnit.factor,
+                    gradient: const SweepGradient(
+                        colors: <Color>[Color(0xFF9E40DC), Color(0xFFE63B86)],
+                        stops: <double>[0.25, 0.75]),
+                  )
                 ])
           ],
         ),
@@ -94,44 +103,18 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class CustomAxis extends RadialAxis {
-  CustomAxis({
-    double radiusFactor = 1,
-    List<GaugePointer> pointers,
-    GaugeTextStyle axisLabelStyle,
-    AxisLineStyle axisLineStyle,
-    double minimum,
-    double maximum,
-    bool showTicks,
-    double labelOffset,
-  }) : super(
-    pointers: pointers ?? <GaugePointer>[],
-    minimum: minimum,
-    maximum: maximum,
-    showTicks: showTicks ?? true,
-    labelOffset: labelOffset ?? 20,
-    axisLabelStyle: axisLabelStyle ??
-        GaugeTextStyle(
-            color: Colors.black,
-            fontSize: 15.0,
-            fontFamily: 'Segoe UI',
-            fontStyle: FontStyle.normal,
-            fontWeight: FontWeight.normal),
-    axisLineStyle: axisLineStyle ??
-        AxisLineStyle(
-          color: Colors.grey,
-          thickness: 10,
-        ),
-    radiusFactor: radiusFactor,
-  );
+class _CustomAxisRenderer extends RadialAxisRenderer {
+  _CustomAxisRenderer() : super();
 
+  /// Generated the 9 non-linear interval labels from 0 to 150
+  /// instead of actual generated labels.
   @override
   List<CircularAxisLabel> generateVisibleLabels() {
     final List<CircularAxisLabel> _visibleLabels = <CircularAxisLabel>[];
     for (num i = 0; i < 9; i++) {
       final double _value = _calculateLabelValue(i);
       final CircularAxisLabel label = CircularAxisLabel(
-          axisLabelStyle, _value.toInt().toString(), i, false);
+          this.axis.axisLabelStyle, _value.toInt().toString(), i, false);
       label.value = _value;
       _visibleLabels.add(label);
     }
@@ -139,6 +122,7 @@ class CustomAxis extends RadialAxis {
     return _visibleLabels;
   }
 
+  /// Returns the factor(0 to 1) from value to place the labels in an axis.
   @override
   double valueToFactor(double value) {
     if (value >= 0 && value <= 2) {
