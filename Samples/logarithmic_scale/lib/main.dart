@@ -53,9 +53,13 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: SfRadialGauge(
           axes: <RadialAxis>[
-            CustomAxis(
+            RadialAxis(
                 minimum: 1,
                 maximum: 10000,
+                onCreateAxisRenderer: () {
+                  final _CustomAxisRenderer renderer = _CustomAxisRenderer();
+                  return renderer;
+                },
                 radiusFactor: 0.9,
                 labelOffset: 0.125,
                 offsetUnit: GaugeSizeUnit.factor,
@@ -72,41 +76,20 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class CustomAxis extends RadialAxis {
-  CustomAxis({
-    double radiusFactor = 0.95,
-    List<GaugePointer> pointers,
-    AxisLineStyle axisLineStyle,
-    double minimum,
-    bool showTicks,
-    double labelOffset,
-    GaugeSizeUnit offsetUnit,
-    double maximum,
-  }) : super(
-          pointers: pointers ?? <GaugePointer>[],
-          labelOffset: labelOffset,
-          offsetUnit: offsetUnit,
-          minimum: minimum,
-          maximum: maximum,
-          showTicks: showTicks,
-          axisLineStyle: axisLineStyle ??
-              AxisLineStyle(
-                color: Colors.grey,
-                thickness: 10,
-              ),
-          radiusFactor: radiusFactor,
-        );
+class _CustomAxisRenderer extends RadialAxisRenderer {
+  _CustomAxisRenderer() : super();
 
   int _labelsCount;
+
   @override
   List<CircularAxisLabel> generateVisibleLabels() {
     final List<CircularAxisLabel> _visibleLabels = <CircularAxisLabel>[];
-    num _minimum = _logBase(minimum, 10);
-    num _maximum = _logBase(maximum, 10);
+    num _minimum = _logBase(this.axis.minimum, 10);
+    num _maximum = _logBase(this.axis.maximum, 10);
     for (num i = _minimum; i <= _maximum; i++) {
       final int _value = math.pow(10, i).floor(); // logBase  value is 10
       final CircularAxisLabel label = CircularAxisLabel(
-          axisLabelStyle, _value.toInt().toString(), i, false);
+          this.axis.axisLabelStyle, _value.toInt().toString(), i, false);
       label.value = _value;
       _visibleLabels.add(label);
     }
