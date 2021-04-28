@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -45,7 +45,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,11 +52,15 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: SfRadialGauge(
           axes: <RadialAxis>[
-            RadialAxis(axisLineStyle: AxisLineStyle(cornerStyle: CornerStyle.bothCurve,
-                thickness: 15),
-            interval: 10, minorTicksPerInterval: 0,
-            pointers: <GaugePointer>[RangePointer(value: 50,
-                cornerStyle: CornerStyle.bothCurve, width: 15)])
+            RadialAxis(
+                axisLineStyle: AxisLineStyle(
+                    cornerStyle: CornerStyle.bothCurve, thickness: 15),
+                interval: 10,
+                minorTicksPerInterval: 0,
+                pointers: <GaugePointer>[
+                  RangePointer(
+                      value: 50, cornerStyle: CornerStyle.bothCurve, width: 15)
+                ])
           ],
         ),
       ),

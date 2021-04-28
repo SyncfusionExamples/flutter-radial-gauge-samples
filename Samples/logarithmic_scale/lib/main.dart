@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
 class _CustomAxisRenderer extends RadialAxisRenderer {
   _CustomAxisRenderer() : super();
 
-  int _labelsCount;
+  late int _labelsCount;
 
   @override
   List<CircularAxisLabel> generateVisibleLabels() {

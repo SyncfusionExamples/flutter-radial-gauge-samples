@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -65,18 +65,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
 class CustomMarkerPointer extends MarkerPointer {
   CustomMarkerPointer(
-      {double value,
-      double markerWidth,
-      double markerHeight,
-      Color borderColor,
-      double borderWidth})
+      {required double value,
+      required double markerWidth,
+      required double markerHeight,
+      Color? borderColor,
+      double? borderWidth})
       : super(
             value: value,
             markerWidth: markerWidth,
             markerHeight: markerHeight,
             borderWidth: borderWidth ?? 2);
 
-  @override
   void drawPointer(Canvas canvas, double animationValue, Offset startPosition,
       Offset endPosition, double pointerAngle) {
     final Paint paint = Paint()
@@ -93,7 +92,8 @@ class CustomMarkerPointer extends MarkerPointer {
     Offset startPosition,
     Offset endPosition,
   ) {
-    List<Offset> _offsets = List<Offset>(6);
+    List<Offset> _offsets =
+        List<Offset>.filled(6, Offset(0, 0), growable: false);
 
     double _x1 = markerWidth / 2;
     double _y1 = markerHeight / 2;

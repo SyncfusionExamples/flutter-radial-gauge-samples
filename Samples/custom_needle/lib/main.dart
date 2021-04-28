@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -75,12 +75,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
 class CustomNeedlePointer extends NeedlePointer {
   CustomNeedlePointer(
-      {double value,
-      double needleStartWidth,
-      double needleEndWidth,
-      double needleLength,
-      GaugeSizeUnit lengthUnit,
-      KnobStyle knobStyle})
+      {required double value,
+      required double needleStartWidth,
+      required double needleEndWidth,
+      required double needleLength,
+      required GaugeSizeUnit lengthUnit,
+      required KnobStyle knobStyle})
       : super(
             value: value,
             needleEndWidth: needleEndWidth,
@@ -89,14 +89,13 @@ class CustomNeedlePointer extends NeedlePointer {
             lengthUnit: lengthUnit,
             knobStyle: knobStyle);
 
-  double _radius;
-  Offset _centerPoint;
-  double _needleRadian;
-  double _startLeftX, _startLeftY, _startRightX, _startRightY;
-  double _midLeftX, _midLeftY, _midRightX, _midRightY;
-  double _stopLeftX, _stopLeftY, _stopRightX, _stopRightY;
+  late double _radius;
+  late Offset _centerPoint;
+  late double _needleRadian;
+  late double _startLeftX, _startLeftY, _startRightX, _startRightY;
+  late double _midLeftX, _midLeftY, _midRightX, _midRightY;
+  late double _stopLeftX, _stopLeftY, _stopRightX, _stopRightY;
 
-  @override
   void drawPointer(Canvas canvas, double animationValue, Offset startPosition,
       Offset endPosition, double pointerAngle) {
     _needleRadian = _degreeToRadian(pointerAngle);
@@ -147,32 +146,29 @@ class CustomNeedlePointer extends NeedlePointer {
         0.6 * _radius; // Calculated the length based on actual needle length
     // to get the sharp tip at end
     final double _radian = _degreeToRadian(-90);
-    if (needleEndWidth != null) {
-      // Calculates the points to get the start position
-      _startLeftX = startPosition.dx - needleEndWidth * math.cos(_radian - 90);
-      _startLeftY = startPosition.dy - needleEndWidth * math.sin(_radian - 90);
-      _startRightX = startPosition.dx - needleEndWidth * math.cos(_radian + 90);
-      _startRightY = startPosition.dy - needleEndWidth * math.sin(_radian + 90);
-    }
 
-    if (needleStartWidth != null) {
-      // Calculates the points to get the end position
-      _stopLeftX = endPosition.dx - needleStartWidth * math.cos(_radian - 90);
-      _stopLeftY = endPosition.dy - needleStartWidth * math.sin(_radian - 90);
-      _stopRightX = endPosition.dx - needleStartWidth * math.cos(_radian + 90);
-      _stopRightY = endPosition.dy - needleStartWidth * math.sin(_radian + 90);
+    // Calculates the points to get the start position
+    _startLeftX = startPosition.dx - needleEndWidth * math.cos(_radian - 90);
+    _startLeftY = startPosition.dy - needleEndWidth * math.sin(_radian - 90);
+    _startRightX = startPosition.dx - needleEndWidth * math.cos(_radian + 90);
+    _startRightY = startPosition.dy - needleEndWidth * math.sin(_radian + 90);
 
-      // Calculates the point based on tip length
+    // Calculates the points to get the end position
+    _stopLeftX = endPosition.dx - needleStartWidth * math.cos(_radian - 90);
+    _stopLeftY = endPosition.dy - needleStartWidth * math.sin(_radian - 90);
+    _stopRightX = endPosition.dx - needleStartWidth * math.cos(_radian + 90);
+    _stopRightY = endPosition.dy - needleStartWidth * math.sin(_radian + 90);
 
-      double _stopX = _tipLength * math.cos(_radian);
-      double _stopY = _tipLength * math.sin(_radian);
+    // Calculates the point based on tip length
 
-      // Calculates the points to get the mid position
-      _midLeftX = _stopX - needleEndWidth * math.cos(_radian - 90);
-      _midLeftY = _stopY - needleEndWidth * math.sin(_radian - 90);
-      _midRightX = _stopX - needleEndWidth * math.cos(_radian + 90);
-      _midRightY = _stopY - needleEndWidth * math.sin(_radian + 90);
-    }
+    double _stopX = _tipLength * math.cos(_radian);
+    double _stopY = _tipLength * math.sin(_radian);
+
+    // Calculates the points to get the mid position
+    _midLeftX = _stopX - needleEndWidth * math.cos(_radian - 90);
+    _midLeftY = _stopY - needleEndWidth * math.sin(_radian - 90);
+    _midRightX = _stopX - needleEndWidth * math.cos(_radian + 90);
+    _midRightY = _stopY - needleEndWidth * math.sin(_radian + 90);
   }
 
   void _renderKnob(Canvas canvas) {

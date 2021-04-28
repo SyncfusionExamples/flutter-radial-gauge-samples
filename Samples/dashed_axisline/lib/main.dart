@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -45,45 +45,69 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: SfRadialGauge(
-            axes:<RadialAxis>[RadialAxis(
-              startAngle: 180, endAngle: 0, canScaleToFit: true, showTicks: false,
-                showLabels: false,
-                pointers: <GaugePointer>[
-                  MarkerPointer(value: 75, markerType: MarkerType.invertedTriangle,
-                  markerHeight: 23, markerWidth: 23, color:Color(0xFFEE0979),
-                  offsetUnit: GaugeSizeUnit.factor,
-                  markerOffset: -0.17)
-                ],
-                annotations: <GaugeAnnotation>[
-                  GaugeAnnotation(angle: 173, positionFactor: 1,
-                  widget: Text('Min', style: TextStyle(fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFFEE0979)),)),
-                  GaugeAnnotation(angle: 7, positionFactor: 1,
-                      widget: Text('Max', style: TextStyle(fontSize: 20,
+        child: SfRadialGauge(axes: <RadialAxis>[
+          RadialAxis(
+              startAngle: 180,
+              endAngle: 0,
+              canScaleToFit: true,
+              showTicks: false,
+              showLabels: false,
+              pointers: <GaugePointer>[
+                MarkerPointer(
+                    value: 75,
+                    markerType: MarkerType.invertedTriangle,
+                    markerHeight: 23,
+                    markerWidth: 23,
+                    color: Color(0xFFEE0979),
+                    offsetUnit: GaugeSizeUnit.factor,
+                    markerOffset: -0.17)
+              ],
+              annotations: <GaugeAnnotation>[
+                GaugeAnnotation(
+                    angle: 173,
+                    positionFactor: 1,
+                    widget: Text(
+                      'Min',
+                      style: TextStyle(
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFFEE0979)),)),
-                  GaugeAnnotation(
-                   angle: 90, verticalAlignment: GaugeAlignment.near,
-                    widget: Text('75%', style: TextStyle(fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFFEE0979)),)
-                  )],
-                axisLineStyle: AxisLineStyle( dashArray: <double>[50,3], thickness: 0.25,
-                  thicknessUnit: GaugeSizeUnit.factor,
-                  gradient: const SweepGradient(
-                      colors: <Color>[Color(0xFFEE0979), Color(0xFFFF6A00)],
-                      stops: <double>[0.25, 0.75]
-                  ),)),
-            ]
-        ),
+                          color: Color(0xFFEE0979)),
+                    )),
+                GaugeAnnotation(
+                    angle: 7,
+                    positionFactor: 1,
+                    widget: Text(
+                      'Max',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFFEE0979)),
+                    )),
+                GaugeAnnotation(
+                    angle: 90,
+                    verticalAlignment: GaugeAlignment.near,
+                    widget: Text(
+                      '75%',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFFEE0979)),
+                    ))
+              ],
+              axisLineStyle: AxisLineStyle(
+                dashArray: <double>[50, 3],
+                thickness: 0.25,
+                thicknessUnit: GaugeSizeUnit.factor,
+                gradient: const SweepGradient(
+                    colors: <Color>[Color(0xFFEE0979), Color(0xFFFF6A00)],
+                    stops: <double>[0.25, 0.75]),
+              )),
+        ]),
       ),
     );
   }

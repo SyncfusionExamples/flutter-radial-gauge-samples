@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -45,42 +45,51 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child:  SfRadialGauge(
-            axes: <RadialAxis>[
-              RadialAxis( axisLineStyle: AxisLineStyle(thickness: 0.2,
-                  thicknessUnit: GaugeSizeUnit.factor),
-                  showTicks: false, showLabels: true,
-                  pointers: <GaugePointer>[RangePointer(value: 60,
-                      onValueChanged: onPointerValueChanged,
-                      enableDragging: true,
-                      width: 0.2, sizeUnit: GaugeSizeUnit.factor
-                  ),
-                  ],
-                  annotations:<GaugeAnnotation>[
-                    GaugeAnnotation( widget: Row(
+        child: SfRadialGauge(axes: <RadialAxis>[
+          RadialAxis(
+              axisLineStyle: AxisLineStyle(
+                  thickness: 0.2, thicknessUnit: GaugeSizeUnit.factor),
+              showTicks: false,
+              showLabels: true,
+              pointers: <GaugePointer>[
+                RangePointer(
+                    value: 60,
+                    onValueChanged: onPointerValueChanged,
+                    enableDragging: true,
+                    width: 0.2,
+                    sizeUnit: GaugeSizeUnit.factor),
+              ],
+              annotations: <GaugeAnnotation>[
+                GaugeAnnotation(
+                    widget: Row(
                       children: <Widget>[
-                        Text('$_annotationValue',
-                          style: TextStyle(fontSize: 16,
-                              fontFamily: 'Times', fontWeight: FontWeight.bold,
+                        Text(
+                          '$_annotationValue',
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontFamily: 'Times',
+                              fontWeight: FontWeight.bold,
                               color: const Color(0xFF00A8B5)),
                         ),
-                        Text(' %', style: TextStyle(fontSize: 16,
-                            fontFamily: 'Times',fontWeight: FontWeight.bold,
-                            color: const Color(0xFF00A8B5)),)
+                        Text(
+                          ' %',
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontFamily: 'Times',
+                              fontWeight: FontWeight.bold,
+                              color: const Color(0xFF00A8B5)),
+                        )
                       ],
                     ),
-                        positionFactor: 0.13, angle: 0
-                    )]
-              )
-            ]
-        ),
+                    positionFactor: 0.13,
+                    angle: 0)
+              ])
+        ]),
       ),
     );
   }
@@ -92,5 +101,5 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  String _annotationValue ='60';
+  String _annotationValue = '60';
 }
