@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -45,61 +45,58 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
           child: SfRadialGauge(
-            axes: <RadialAxis>[
-              RadialAxis(
-                  interval: 10,
-                  radiusFactor:  0.9,
-                  startAngle: 0,
-                  endAngle: 360,
-                  showTicks: false,
-                  showLabels: false,
-                  axisLineStyle: AxisLineStyle(thickness: 20),
-                  pointers: <GaugePointer>[
-                    RangePointer(
-                        value: 73,
-                        width: 20,
-                        gradient: const SweepGradient(
-                            colors: <Color>[Color(0xFFFCE38A), Color(0xFFF38181)],
-                            stops: <double>[0.25, 0.75]),
-                        cornerStyle: CornerStyle.bothCurve)
-                  ],
-                  annotations: <GaugeAnnotation>[
-                    GaugeAnnotation(
-                        widget: Column(
-                          children: <Widget>[
-                            Container(
-                                width:  50.00,
-                                height:  50.00,
-                                decoration: const BoxDecoration(
-                                  image: DecorationImage(
-                                    image:ExactAssetImage('images/sun.png'),
-                                    fit: BoxFit.fill,
-                                  ),
-                                )),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 2, 0, 0),
-                              child: Container(
-                                child: Text('73°F',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize:  25)),
+        axes: <RadialAxis>[
+          RadialAxis(
+              interval: 10,
+              radiusFactor: 0.9,
+              startAngle: 0,
+              endAngle: 360,
+              showTicks: false,
+              showLabels: false,
+              axisLineStyle: AxisLineStyle(thickness: 20),
+              pointers: <GaugePointer>[
+                RangePointer(
+                    value: 73,
+                    width: 20,
+                    gradient: const SweepGradient(
+                        colors: <Color>[Color(0xFFFCE38A), Color(0xFFF38181)],
+                        stops: <double>[0.25, 0.75]),
+                    cornerStyle: CornerStyle.bothCurve)
+              ],
+              annotations: <GaugeAnnotation>[
+                GaugeAnnotation(
+                    widget: Column(
+                      children: <Widget>[
+                        Container(
+                            width: 50.00,
+                            height: 50.00,
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                image: ExactAssetImage('images/sun.png'),
+                                fit: BoxFit.fill,
                               ),
-                            )
-                          ],
-                        ),
-                        angle: 270,
-                        positionFactor: 0.1)
-                  ])
-            ],
-          )
-      ),
+                            )),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 2, 0, 0),
+                          child: Container(
+                            child: Text('73°F',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 25)),
+                          ),
+                        )
+                      ],
+                    ),
+                    angle: 270,
+                    positionFactor: 0.1)
+              ])
+        ],
+      )),
     );
   }
 }

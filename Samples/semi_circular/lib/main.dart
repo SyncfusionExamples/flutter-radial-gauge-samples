@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -45,10 +45,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -57,40 +55,61 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
               SfRadialGauge(
                 axes: <RadialAxis>[
-                  RadialAxis(startAngle: 270,canScaleToFit: true, endAngle: 90, interval: 10)
+                  RadialAxis(
+                      startAngle: 270,
+                      canScaleToFit: true,
+                      endAngle: 90,
+                      interval: 10)
                 ],
               ),
-              Padding(padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  child:  Divider(
-                      height: 20.0,
-                      indent: 5.0,
-                    color: Colors.grey,
-                  )),
-              SfRadialGauge(
-                axes: <RadialAxis>[
-                  RadialAxis(startAngle: 90,canScaleToFit: true, endAngle: 270, isInversed: true, interval: 10)
-                ],
-              ),
-              Padding(padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  child:  Divider(
+              Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  child: Divider(
                     height: 20.0,
                     indent: 5.0,
                     color: Colors.grey,
                   )),
               SfRadialGauge(
                 axes: <RadialAxis>[
-                  RadialAxis(startAngle: 180,canScaleToFit: true, endAngle: 0, interval: 10)
+                  RadialAxis(
+                      startAngle: 90,
+                      canScaleToFit: true,
+                      endAngle: 270,
+                      isInversed: true,
+                      interval: 10)
                 ],
               ),
-              Padding(padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  child:  Divider(
+              Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  child: Divider(
                     height: 20.0,
                     indent: 5.0,
                     color: Colors.grey,
                   )),
               SfRadialGauge(
                 axes: <RadialAxis>[
-                  RadialAxis(startAngle: 0,canScaleToFit: true, isInversed: true, endAngle: 180, interval: 10)
+                  RadialAxis(
+                      startAngle: 180,
+                      canScaleToFit: true,
+                      endAngle: 0,
+                      interval: 10)
+                ],
+              ),
+              Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  child: Divider(
+                    height: 20.0,
+                    indent: 5.0,
+                    color: Colors.grey,
+                  )),
+              SfRadialGauge(
+                axes: <RadialAxis>[
+                  RadialAxis(
+                      startAngle: 0,
+                      canScaleToFit: true,
+                      isInversed: true,
+                      endAngle: 180,
+                      interval: 10)
                 ],
               )
             ],
