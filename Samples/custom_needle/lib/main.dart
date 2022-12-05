@@ -73,6 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+// ignore: must_be_immutable
 class CustomNeedlePointer extends NeedlePointer {
   CustomNeedlePointer(
       {required double value,
