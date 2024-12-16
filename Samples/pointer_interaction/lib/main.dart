@@ -52,43 +52,51 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: SfRadialGauge(axes: <RadialAxis>[
           RadialAxis(
-              axisLineStyle: AxisLineStyle(
-                  thickness: 0.2, thicknessUnit: GaugeSizeUnit.factor),
-              showTicks: false,
-              showLabels: true,
-              pointers: <GaugePointer>[
-                RangePointer(
-                    value: 60,
-                    onValueChanged: onPointerValueChanged,
-                    enableDragging: true,
-                    width: 0.2,
-                    sizeUnit: GaugeSizeUnit.factor),
-              ],
-              annotations: <GaugeAnnotation>[
-                GaugeAnnotation(
-                    widget: Row(
-                      children: <Widget>[
-                        Text(
-                          '$_annotationValue',
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontFamily: 'Times',
-                              fontWeight: FontWeight.bold,
-                              color: const Color(0xFF00A8B5)),
-                        ),
-                        Text(
-                          ' %',
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontFamily: 'Times',
-                              fontWeight: FontWeight.bold,
-                              color: const Color(0xFF00A8B5)),
-                        )
-                      ],
+            axisLineStyle: AxisLineStyle(
+              thickness: 0.2,
+              thicknessUnit: GaugeSizeUnit.factor,
+            ),
+            showTicks: false,
+            showLabels: true,
+            pointers: [
+              RangePointer(
+                value: _pointerValue,
+                onValueChanged: onPointerValueChanged,
+                enableDragging: true,
+                width: 0.2,
+                sizeUnit: GaugeSizeUnit.factor,
+              ),
+            ],
+            annotations: [
+              GaugeAnnotation(
+                widget: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      '${_pointerValue.toInt()}',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontFamily: 'Times',
+                        fontWeight: FontWeight.bold,
+                        color: const Color(0xFF00A8B5),
+                      ),
                     ),
-                    positionFactor: 0.13,
-                    angle: 0)
-              ])
+                    Text(
+                      ' %',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontFamily: 'Times',
+                        fontWeight: FontWeight.bold,
+                        color: const Color(0xFF00A8B5),
+                      ),
+                    ),
+                  ],
+                ),
+                positionFactor: 0,
+                angle: 0,
+              ),
+            ],
+          ),
         ]),
       ),
     );
@@ -96,10 +104,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void onPointerValueChanged(double value) {
     setState(() {
-      final int _value = value.toInt();
-      _annotationValue = '$_value';
+      _pointerValue = value;
     });
   }
 
-  String _annotationValue = '60';
+  double _pointerValue = 60.0;
 }
