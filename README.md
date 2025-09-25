@@ -1,5 +1,5 @@
 # Flutter Radial Gauge Samples
-This repository contains samples for Flutter Radial Sauge.
+This repository contains samples for Flutter Radial Gauge.
 
 ## Syncfusion® controls:
 
