@@ -19,7 +19,7 @@ Refer to the following link to know about system requirements - [System Requirem
 1. Clone the sample and open it in preferred IDE.
 2. Run the application.
 
-   *Note: If you download the sample using the "Download ZIP" option, right-click it, select Properties, and then select Unblock.*
+*Note: If you download the sample using the "Download ZIP" option, right-click it, select Properties, and then select Unblock.*
 
 ## License
 
